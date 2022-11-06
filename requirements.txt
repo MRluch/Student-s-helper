@@ -1,4 +1,4 @@
 bs4
-pyqt
+pyqt5
 requests
 sqlite3
