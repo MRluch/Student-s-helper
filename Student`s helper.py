@@ -510,7 +510,7 @@ class Planner_Logic(QMainWindow, Planner_Interface):
         if self.plan == []:
             self.plainTextEdit_2.setPlainText("Запланировано:\n")
         else:
-            self.plainTextEdit_2.setPlainText("Запланировано:\n" + "\n".join(self.plan[1:]))
+            self.plainTextEdit_2.setPlainText("Запланировано:\n" + "\n".join(self.plan))
         self.back_btn.clicked.connect(self.back)
         self.pushButton.clicked.connect(self.toPlan)
     def toPlan(self):
@@ -519,7 +519,7 @@ class Planner_Logic(QMainWindow, Planner_Interface):
         self.plan.append(f"{timeNow[2]}.{timeNow[1]}.{timeNow[0]} {timeNow[3]} ||||")
         self.plan.sort(key=lambda x: (x[6:10], x[3:5], x[0:2], x[11:16], x[17:]))
         self.plan = self.plan[self.plan.index(f"{timeNow[2]}.{timeNow[1]}.{timeNow[0]} {timeNow[3]} ||||") + 1:]
-        self.plainTextEdit_2.setPlainText("Запланировано:\n" + "\n".join(self.plan[1:]))
+        self.plainTextEdit_2.setPlainText("Запланировано:\n" + "\n".join(self.plan))
         self.cur.execute(f"UPDATE mainTable SET memory = ? WHERE id = ?", ("\n".join(self.plan), Logon_Logic_1.id[0]))
         self.con.commit()
 
@@ -631,7 +631,7 @@ class MainMenu_Logic(QMainWindow, MainMenu_Interface):
         self.plan.append(f"{timeNow[2]}.{timeNow[1]}.{timeNow[0]} {timeNow[3]} ||||")
         self.plan.sort(key=lambda x: (x[6:10], x[3:5], x[0:2], x[11:16], x[17:]))
         self.plan = self.plan[self.plan.index(f"{timeNow[2]}.{timeNow[1]}.{timeNow[0]} {timeNow[3]} ||||") + 1:]
-        self.plainTextEdit.setPlainText("Напоминалка:\n" + "\n".join(self.plan[1:]))
+        self.plainTextEdit.setPlainText("Напоминалка:\n" + "\n".join(self.plan))
         self.dz_btn.clicked.connect(self.homework)
         self.progress_btn.clicked.connect(self.grade)
         self.plan_btn.clicked.connect(self.planner)
